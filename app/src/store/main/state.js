@@ -1,24 +1,25 @@
 export const pages = [
   {
-    name: "Главная",
-    url: "/",
+    name: "Home",
+    label: "Главная",
   },
   {
     name: "Shop",
-    url: "/shop",
+    label: "Магазин",
   },
   {
     name: "Pages",
-    url: "/pages",
+    label: "Страницы",
   },
   {
     name: "Blog",
-    url: "/blog",
+    label: "Блог",
   },
   {
     name: "Contact",
-    url: "/contact",
+    label: "Контакты",
   },
+
 ];
 
 

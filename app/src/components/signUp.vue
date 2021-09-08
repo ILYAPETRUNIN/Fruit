@@ -1,10 +1,10 @@
 <template>
   <v-form class='signUp third--text'>
-      <h3>Sign Up for Our Newsletter</h3>
-      <p>get e-mail updates about our latest Shop and special offers.</p>
+      <h3>Подпишитесь на нашу рассылку</h3>
+      <p>и получайте по электронной почте обновления о наших последних Магазинах и специальных предложениях.</p>
       <div class='d-flex'>
-           <v-text-field class='signUp__input' placeholder='Enter email address'  flat filled background-color='third'></v-text-field>
-           <v-btn max-height='100%' class='signUp__btn' color='primary'>SUBSCRIBE</v-btn>
+           <v-text-field class='signUp__input' placeholder='Введите ваш email'  flat filled background-color='third'></v-text-field>
+           <v-btn max-height='100%' class='signUp__btn' color='primary'>ПОДПИСАТЬСЯ</v-btn>
       </div>
       <Contacts class='header__contacts' :items='contacts'/>
   </v-form>

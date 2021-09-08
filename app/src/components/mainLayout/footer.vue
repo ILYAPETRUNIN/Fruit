@@ -1,7 +1,7 @@
 <template>
-  <v-container class='d-flex flex-column footer justify-space-between'>
+  <v-container class='d-flex flex-column footer justify-space-between pa-0'>
       <v-row>
-          <v-col cols='3'>
+          <v-col cols='3' class='pa-0'>
               <Logo class='footer__logo' color='third'/>
               <div>
                   <p class='third--text'>Адресс: <a href='#' class='link text-decoration-none'>г.Уфа ул.Проспект Октября 79</a></p>
@@ -23,15 +23,16 @@
                           <router-link class='menu__link link text-decoration-none' v-for='link in footerLinks1' :key='link.name' :to='link.url'>{{link.name}}</router-link>
                       </div> 
 
-                      <div>
+                      <v-col class='pa-0' cols='5'>
                         <SignUp/>
-                      </div>
+                        <PaySystem/>
+                      </v-col>
                   </div>
           </v-col>
       </v-row>
 
-      <v-row>
-        <v-col class='third--text'>Copyright ©2021 All rights reserved | This template is made with 💚 by F&V</v-col>
+      <v-row class='ma-0 pa-0'>
+        <v-col class='third--text ma-0 pa-0'>Copyright ©2021 Все права защищены</v-col>
       </v-row>
 
   </v-container>
@@ -40,12 +41,14 @@
 <script>
 import Logo from '../logo.vue'
 import SignUp from '../signUp.vue'
+import PaySystem from '../paySystem.vue'
 import { mapGetters } from 'vuex';
 
 export default {
   components:{
      Logo,
-     SignUp
+     SignUp,
+     PaySystem
   },
       computed:{
         ...mapGetters("main", ["footerLinks","footerLinks1"])
@@ -64,6 +67,7 @@ export default {
 
     .menu{
       font-size:14px;
+      padding:0px;
       padding-left:40px;
       &__head{
         margin-bottom:10px;
