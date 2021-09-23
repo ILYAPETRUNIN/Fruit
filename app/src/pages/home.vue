@@ -2,7 +2,7 @@
     <div class='home'>
 
         <div class='d-flex justify-space-between home__filter flex-wrap'>
-              <PalletFilter v-for='item in palletFilter' :key='item.name' :filterItem='item'/>
+              <Card v-for='item in palletFilter' :key='item.name' :filterItem='item'/>
         </div>
 
         <div class='d-flex justify-space-between home__favorite'>
@@ -15,11 +15,15 @@
                 <FilterBtn text='Популярные продукты'/>
                 <FilterBtn text='Обзор продуктов'/>
             </div>
-            <ListProduct :productsList='productsList'/>
+            <ListProduct :productsList='getProducts'/>
         </div>
 
         <div class='featuredProduct'>
               <AppHeader text='Рекомендуемые товары'/>
+
+              <div class='featuredProduct__list d-flex home__filter flex-wrap'>
+                  <Card class='featuredProduct__list_item' v-for='item in getFeatured' :key='item.name' :filterItem='item'/>
+              </div>
         </div>
     </div>
 </template>
@@ -38,18 +42,25 @@ const favoriteProducts=[
 ]
 
 const productsList=[
-  {id:0,name:'Цветная капуста',url:'img/products/cauliflower.png',price:'30.00'},
-  {id:1,name:'Голубика',url:'img/products/blueberry.png',price:'30.00'},
-  {id:2,name:'Лесной орех',url:'img/products/hazelnuts.png',price:'30.00'},
-  {id:3,name:'Груша',url:'img/products/organicQuince.png',price:'30.00'},
-  {id:4,name:'Зеленый перец',url:'img/products/capsicumGreen.png',price:'30.00'},
-  {id:5,name:'Зеленое яблоко',url:'img/products/greenApple.png',price:'30.00'},
-  {id:6,name:'Гибридные томаты',url:'img/products/tomatoHybrid.png',price:'30.00'},
-  {id:7,name:'Малина',url:'img/products/freshRaspberry.png',price:'30.00'},
+  {id:0,label:'Цветная капуста',url:'img/products/cauliflower.png',price:'30.00'},
+  {id:1,label:'Голубика',url:'img/products/blueberry.png',price:'30.00'},
+  {id:2,label:'Лесной орех',url:'img/products/hazelnuts.png',price:'30.00'},
+  {id:3,label:'Груша',url:'img/products/organicQuince.png',price:'30.00'},
+  {id:4,label:'Зеленый перец',url:'img/products/capsicumGreen.png',price:'30.00'},
+  {id:5,label:'Зеленое яблоко',url:'img/products/greenApple.png',price:'30.00'},
+  {id:6,label:'Гибридные томаты',url:'img/products/tomatoHybrid.png',price:'30.00'},
+  {id:7,label:'Малина',url:'img/products/freshRaspberry.png',price:'30.00'},
+  {id:8,label:'Бананы',url:'img/products/bananas.png',price:'30.00'},
+  {id:9,label:'Абрикос',url:'img/products/apricot.png',price:'30.00'},
+  {id:10,label:'Авокадо',url:'img/products/avocado.png',price:'30.00'},
+  {id:11,label:'Красное яблоко',url:'img/products/redApple.png',price:'30.00'},
+  {id:12,label:'Инжир',url:'img/products/figs.png',price:'30.00'},
+  {id:13,label:'Огурец',url:'img/products/cucumber.png',price:'30.00'},
+  {id:13,label:'Брокколи',url:'img/products/rawBroccoli.png',price:'30.00'},
 ]
 
 
-import PalletFilter from '@/components/home/palletFilter.vue'
+import Card from '@/components/home/card.vue'
 import Favorite from '@/components/home/favorite.vue'
 import ListProduct from '@/components/home/listProducts.vue'
 import FilterBtn from '@/components/home/filterBtn.vue'
@@ -59,14 +70,26 @@ export default {
     return{
         palletFilter,
         favoriteProducts,
-        productsList
+        productsList,
+        showProducts:9,
+        showFeatured:8
     }
   },
+
   components:{
-      PalletFilter,
+      Card,
       Favorite,
       ListProduct,
       FilterBtn
+  },
+
+  computed:{
+    getProducts(){
+        return this.productsList.slice(0,this.showProducts-1);
+    },
+    getFeatured(){
+        return this.productsList.slice(8,this.showFeatured+7);
+    }
   }
 };
 </script>
@@ -89,5 +112,16 @@ export default {
   }
   .listProduct{
     margin-top:72px;
+  }
+  .featuredProduct{
+    &__list{
+
+      &_item{
+        margin-bottom:20px;
+        &:not(:nth-child(4n+4)){
+          margin-right:20px;
+        }
+      }
+    }
   }
 </style>
