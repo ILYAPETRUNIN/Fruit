@@ -4,21 +4,19 @@
           <Header class='container-desctop'/>
       </header>
 
-      <div class='d-flex header align-center justify-center'>
+      <div class='d-flex align-center justify-center'>
         <Navigation class='container-desctop'/>
       </div>
 
-      <div class='d-flex header align-center justify-center'>
+      <div class='d-flex align-center justify-center'>
         <NavigationShop class='container-desctop'/>
       </div>
 
-      <v-main class='container-desctop'>
-          <v-container fluid>
-            <router-view/>
-          </v-container>
+      <v-main class='d-flex align-center justify-center'>
+            <router-view class='container-desctop'/>
       </v-main>
 
-      <v-footer class='d-flex secondary align-center justify-center' app>
+      <v-footer absolute class='d-flex secondary align-center justify-center' app>
           <Footer class='footer container-desctop'/>
       </v-footer>
 

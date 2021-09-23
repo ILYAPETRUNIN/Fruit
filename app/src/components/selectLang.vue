@@ -1,7 +1,7 @@
 <template>
   <v-menu v-model='isShow' nudge-bottom='10px' offset-y class='menu'>
         <template v-slot:activator="{ on, attrs }">
-            <div class='d-flex align-center' v-bind="attrs" v-on="on">
+            <div class='menu_activator d-flex align-center' v-bind="attrs" v-on="on">
                 <v-img
                     max-height="14"
                     max-width="27"
@@ -40,6 +40,10 @@ export default {
 
 <style lang="scss" scoped>
     .menu{
+        &_activator{
+            width:116px!important;
+        }
+        
         &__text{
             margin:0px;
             margin-left:9px;
