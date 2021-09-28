@@ -7,13 +7,16 @@
 <script>
 
 export default {
+  mounted() {
+    console.log(process.env);
+
+    this.$store.dispatch("products/getProducts");
+  },
+
   name: "App",
 
   components: {
   },
 
-  data: () => ({
-    //
-  }),
 };
 </script>

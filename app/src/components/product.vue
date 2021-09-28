@@ -2,17 +2,28 @@
     <div v-ripple class='d-flex align-center product'>
         <v-img class='product__img' max-height="110" max-width="110" :src='item.url'></v-img>
         <div class='product__info'>
-            <h4 class='font-weight-regular'>{{item.label}}</h4>
+            <h4 class='font-weight-regular'>{{item.name}}</h4>
             <p class='font-weight-bold'>{{item.price+" ₽"}}</p>
         </div>
     </div>
 </template>
 
 <script>
+
+
 export default {
+    data(){
+        return{
+            
+        }
+    },
+
     props:{
         item:{type:Object}
-    }
+    },
+
+
+    
 }
 </script>
 

@@ -1,12 +1,13 @@
 <template>
   <div class='listProducts d-flex flex-wrap pa-0'>
-        <Product class='justify-center justify-sm-start col-md-4 col-sm-6 col-xs-12 pa-0 listProducts__item' v-for='product in productsList' :key='product.id' :item='product'/>
+        <Product class='justify-center justify-sm-start col-md-4 col-sm-6 col-xs-12 pa-0 listProducts__item' v-for='product in getProductsList' :key='product.id' :item='product'/>
   </div>
 </template>
 
 <script>
 import Product from '../product.vue'
 
+import { mapGetters } from "vuex";
 
 export default {
   components:{
@@ -16,6 +17,9 @@ export default {
   props:{
     productsList:{type:Array}
   },
+  computed:{
+    ...mapGetters("products", ["getProductsList"]),
+  }
 }
 </script>
 

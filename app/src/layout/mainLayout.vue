@@ -29,6 +29,7 @@ import Footer from '@/components/mainLayout/footer.vue'
 import Navigation from '@/components/mainLayout/navigation.vue'
 import NavigationShop from '@/components/mainLayout/navigationShop.vue'
 export default {
+  
   components: {
     Header,
     Footer,

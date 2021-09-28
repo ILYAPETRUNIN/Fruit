@@ -1,11 +1,11 @@
 <template>
-    <div class='d-flex flex-column justify-center align-center palletFilter'>
+    <div v-ripple class='d-flex flex-column justify-center align-center palletFilter'>
         <v-img cover class='palletFilter__img' max-height="176" max-width="240" :src='filterItem.url'/>
         <div class='d-flex flex-column align-center'>
-            <div v-if='!filterItem.price' class='d-flex justify-center align-center palletFilter__text'>{{filterItem.label}}</div>
+            <div v-if='!filterItem.price' class='d-flex justify-center align-center palletFilter__text'>{{filterItem.name}}</div>
             
             <div v-else class='d-flex flex-column align-center palletFilter__text'>
-                <div class='d-flex justify-center align-center palletFilter__text_1'>{{filterItem.label}}</div>
+                <div class='d-flex justify-center align-center palletFilter__text_1'>{{filterItem.name}}</div>
                 <p class='ma-0'>{{filterItem.price+" ₽"}}</p>
             </div>
         </div>

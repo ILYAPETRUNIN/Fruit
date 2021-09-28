@@ -1,4 +1,5 @@
 export function pages(state) {
+  console.log(state)
   return state.pages;
 }
 

@@ -42,21 +42,21 @@ const favoriteProducts=[
 ]
 
 const productsList=[
-  {id:0,label:'Цветная капуста',url:'img/products/cauliflower.png',price:'30.00'},
-  {id:1,label:'Голубика',url:'img/products/blueberry.png',price:'30.00'},
-  {id:2,label:'Лесной орех',url:'img/products/hazelnuts.png',price:'30.00'},
-  {id:3,label:'Груша',url:'img/products/organicQuince.png',price:'30.00'},
-  {id:4,label:'Зеленый перец',url:'img/products/capsicumGreen.png',price:'30.00'},
-  {id:5,label:'Зеленое яблоко',url:'img/products/greenApple.png',price:'30.00'},
-  {id:6,label:'Гибридные томаты',url:'img/products/tomatoHybrid.png',price:'30.00'},
-  {id:7,label:'Малина',url:'img/products/freshRaspberry.png',price:'30.00'},
-  {id:8,label:'Бананы',url:'img/products/bananas.png',price:'30.00'},
-  {id:9,label:'Абрикос',url:'img/products/apricot.png',price:'30.00'},
-  {id:10,label:'Авокадо',url:'img/products/avocado.png',price:'30.00'},
-  {id:11,label:'Красное яблоко',url:'img/products/redApple.png',price:'30.00'},
-  {id:12,label:'Инжир',url:'img/products/figs.png',price:'30.00'},
-  {id:13,label:'Огурец',url:'img/products/cucumber.png',price:'30.00'},
-  {id:13,label:'Брокколи',url:'img/products/rawBroccoli.png',price:'30.00'},
+  {id:0,label:'Цветная капуста',url:'img/products/cauliflower.png',price:'30.00',number:10},
+  {id:1,label:'Голубика',url:'img/products/blueberry.png',price:'30.00',number:10},
+  {id:2,label:'Лесной орех',url:'img/products/hazelnuts.png',price:'30.00',number:10},
+  {id:3,label:'Груша',url:'img/products/organicQuince.png',price:'30.00',number:10},
+  {id:4,label:'Зеленый перец',url:'img/products/capsicumGreen.png',price:'30.00',number:10},
+  {id:5,label:'Зеленое яблоко',url:'img/products/greenApple.png',price:'30.00',number:10},
+  {id:6,label:'Гибридные томаты',url:'img/products/tomatoHybrid.png',price:'30.00',number:10},
+  {id:7,label:'Малина',url:'img/products/freshRaspberry.png',price:'30.00',number:10},
+  {id:8,label:'Бананы',url:'img/products/bananas.png',price:'30.00',number:10},
+  {id:9,label:'Абрикос',url:'img/products/apricot.png',price:'30.00',number:10},
+  {id:10,label:'Авокадо',url:'img/products/avocado.png',price:'30.00',number:10},
+  {id:11,label:'Красное яблоко',url:'img/products/redApple.png',price:'30.00',number:10},
+  {id:12,label:'Инжир',url:'img/products/figs.png',price:'30.00',number:10},
+  {id:13,label:'Огурец',url:'img/products/cucumber.png',price:'30.00',number:10},
+  {id:13,label:'Брокколи',url:'img/products/rawBroccoli.png',price:'30.00',number:10},
 ]
 
 
@@ -65,7 +65,11 @@ import Favorite from '@/components/home/favorite.vue'
 import ListProduct from '@/components/home/listProducts.vue'
 import FilterBtn from '@/components/home/filterBtn.vue'
 
+
+
 export default {
+
+
   data(){
     return{
         palletFilter,
@@ -74,6 +78,9 @@ export default {
         showProducts:9,
         showFeatured:8
     }
+  },
+  methods:{
+   
   },
 
   components:{
@@ -89,7 +96,9 @@ export default {
     },
     getFeatured(){
         return this.productsList.slice(8,this.showFeatured+7);
-    }
+    },
+    
+    
   }
 };
 </script>
