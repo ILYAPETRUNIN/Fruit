@@ -3,7 +3,7 @@ import {getURL} from "@/backend/firebase/storage.js";
 
 export async function setProducts (state, data) {
     
-    for(let key in data){
+    for(let key in data){                                           //Получаем ссылку на данные в облаке
         data[key].url=await getURL(data[key].url)
     }
 

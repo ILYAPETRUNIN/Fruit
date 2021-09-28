@@ -25,6 +25,7 @@
                   <Card class='featuredProduct__list_item' v-for='item in getFeatured' :key='item.name' :filterItem='item'/>
               </div>
         </div>
+        123
     </div>
 </template>
 
