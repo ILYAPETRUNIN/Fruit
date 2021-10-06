@@ -11,30 +11,36 @@
 
         <div class='listProduct'>
             <div class='listProduct__filter d-flex justify-space-between mb-10 mt'>
-                <FilterBtn text='Посление продукты'/>
+                <FilterBtn @filter='filterDate' text='Посление продукты'/>
                 <FilterBtn text='Популярные продукты'/>
                 <FilterBtn text='Обзор продуктов'/>
             </div>
-            <ListProduct :productsList='getProducts'/>
+            <ListProduct :productsList='getFiltered'/>
         </div>
 
         <div class='featuredProduct'>
               <AppHeader text='Рекомендуемые товары'/>
 
               <div class='featuredProduct__list d-flex home__filter flex-wrap'>
-                  <Card class='featuredProduct__list_item' v-for='item in getFeatured' :key='item.name' :filterItem='item'/>
+                  <Card class='featuredProduct__list_item' v-for='item in getFeatured' :key='item[0]' :filterItem='item[1]'/>
               </div>
         </div>
-        123
+
+        <div class='blog'>
+              <AppHeader text='Интересные статьи'/>
+              <div class='blog__list d-flex  flex-wrap justify-space-between'>
+                  <BlogCard v-for='item in Array.from(getBlogs)' :key='item[0]' :item='item[1]'/>
+              </div>
+        </div>
     </div>
 </template>
 
 <script>
 const palletFilter=[
-  {id:0,name:'freshFruit',label:'Свежие фрукты',url:require('@/assets/img/filter/freshfruit.png')},
-  {id:1,name:'driedFruit',label:'Сухофрукты, орехи',url:require('@/assets/img/filter/driedfruit.png')},
-  {id:2,name:'vegetables',label:'Овощи',url:require('@/assets/img/filter/vegetables.png')},
-  {id:3,name:'drinkFruit',label:'Напитки',url:require('@/assets/img/filter/drinkfruits.png')},
+  {id:0,value:'freshFruit',name:'Свежие фрукты',url:require('@/assets/img/filter/freshfruit.png')},
+  {id:1,value:'driedFruit',name:'Сухофрукты, орехи',url:require('@/assets/img/filter/driedfruit.png')},
+  {id:2,value:'vegetables',name:'Овощи',url:require('@/assets/img/filter/vegetables.png')},
+  {id:3,value:'drinkFruit',name:'Напитки',url:require('@/assets/img/filter/drinkfruits.png')},
 ]
 
 const favoriteProducts=[
@@ -42,30 +48,15 @@ const favoriteProducts=[
   {id:1,name:'drinks',label:'Соки и смузи',description:'100% Всё из натуральных фруктов',url:require('@/assets/img/favorite/favorite2.png')},
 ]
 
-const productsList=[
-  {id:0,label:'Цветная капуста',url:'img/products/cauliflower.png',price:'30.00',number:10},
-  {id:1,label:'Голубика',url:'img/products/blueberry.png',price:'30.00',number:10},
-  {id:2,label:'Лесной орех',url:'img/products/hazelnuts.png',price:'30.00',number:10},
-  {id:3,label:'Груша',url:'img/products/organicQuince.png',price:'30.00',number:10},
-  {id:4,label:'Зеленый перец',url:'img/products/capsicumGreen.png',price:'30.00',number:10},
-  {id:5,label:'Зеленое яблоко',url:'img/products/greenApple.png',price:'30.00',number:10},
-  {id:6,label:'Гибридные томаты',url:'img/products/tomatoHybrid.png',price:'30.00',number:10},
-  {id:7,label:'Малина',url:'img/products/freshRaspberry.png',price:'30.00',number:10},
-  {id:8,label:'Бананы',url:'img/products/bananas.png',price:'30.00',number:10},
-  {id:9,label:'Абрикос',url:'img/products/apricot.png',price:'30.00',number:10},
-  {id:10,label:'Авокадо',url:'img/products/avocado.png',price:'30.00',number:10},
-  {id:11,label:'Красное яблоко',url:'img/products/redApple.png',price:'30.00',number:10},
-  {id:12,label:'Инжир',url:'img/products/figs.png',price:'30.00',number:10},
-  {id:13,label:'Огурец',url:'img/products/cucumber.png',price:'30.00',number:10},
-  {id:13,label:'Брокколи',url:'img/products/rawBroccoli.png',price:'30.00',number:10},
-]
+
 
 
 import Card from '@/components/home/card.vue'
 import Favorite from '@/components/home/favorite.vue'
 import ListProduct from '@/components/home/listProducts.vue'
 import FilterBtn from '@/components/home/filterBtn.vue'
-
+import BlogCard from '@/components/blog/blogCard.vue'
+import { mapGetters } from "vuex";
 
 
 export default {
@@ -75,31 +66,58 @@ export default {
     return{
         palletFilter,
         favoriteProducts,
-        productsList,
         showProducts:9,
-        showFeatured:8
+        showFeatured:8,
+        filterData:[]
     }
   },
-  methods:{
-   
-  },
+
 
   components:{
       Card,
       Favorite,
       ListProduct,
-      FilterBtn
+      FilterBtn,
+      BlogCard
   },
 
   computed:{
-    getProducts(){
-        return this.productsList.slice(0,this.showProducts-1);
+    getFiltered(){
+        return this.filterData
     },
+
     getFeatured(){
-        return this.productsList.slice(8,this.showFeatured+7);
+      if(this.getProductsList)return Array.from(this.getProductsList).slice(8,this.showFeatured+7);
+      else return []    
     },
+
+    ...mapGetters("products", ["getProductsList"]),
+    ...mapGetters("blog", ["getBlogs"]),
     
     
+    
+  },
+
+  watch: {
+    // эта функция запускается при любом изменении вопроса
+    getProductsList: function (val) {
+      this.filterData=val
+    }
+  },
+
+  methods:{
+      filterDate(dir){
+          if(dir=="right"){
+              this.filterData=this.getProducts.sort((a,b)=>{
+                  let Date1=new Date(a[1].date);
+                  let Date2=new Date(b[1].date);
+                  
+                  if(Date1>Date2) return 1;
+                  else if(Date1<Date2) return -1;
+                  return 0;
+              })
+          }
+      }
   }
 };
 </script>
@@ -113,6 +131,7 @@ export default {
 
 <style lang="scss" scoped>
   .home{
+    margin-bottom:137px;
     &__filter{
       margin-top:20px;
     }

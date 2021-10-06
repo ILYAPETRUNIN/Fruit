@@ -1,12 +1,4 @@
 
-import {getURL} from "@/backend/firebase/storage.js";
-
-export async function setProducts (state, data) {
-    
-    for(let key in data){                                           //Получаем ссылку на данные в облаке
-        data[key].url=await getURL(data[key].url)
-    }
-
-    console.log(data)
-    state.productsList=data 
+export function setProducts (state, data) {
+    state.productsList=new Map(Object.entries(data)) 
  }

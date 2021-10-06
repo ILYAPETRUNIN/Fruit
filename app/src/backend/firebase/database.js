@@ -33,10 +33,77 @@ export  function pushFavoriteSectionsData(name, url,) {
     });
   }
 
-export function getProduct(){
+export  function pushBlog(name, url,date,countComments,text) {
+    const sectionListRef = ref(database, "blog");
+    const newdata =push(sectionListRef);
+    return  set(newdata, {
+      name,
+      url,
+      date,
+      countComments,
+      text
+    });
+}
+
+
+
+export function getVegetables(){
   return new Promise((resolve, reject) => {
         onValue(
-            ref(database, "products"), 
+            ref(database, "products/vegetables"), 
+            (snapshot) => {
+              resolve(snapshot.val())},
+            (error) => {reject(error)}
+        );
+  })
+}
+
+export function getFruits(){
+  return new Promise((resolve, reject) => {
+        onValue(
+            ref(database, "products/fruits"), 
+            (snapshot) => {
+              resolve(snapshot.val())},
+            (error) => {reject(error)}
+        );
+  })
+}
+
+export function getNuts(){
+  return new Promise((resolve, reject) => {
+        onValue(
+            ref(database, "products/nuts"), 
+            (snapshot) => {
+              resolve(snapshot.val())},
+            (error) => {reject(error)}
+        );
+  })
+}
+
+export function getBerries(){
+  return new Promise((resolve, reject) => {
+        onValue(
+            ref(database, "products/berries"), 
+            (snapshot) => {
+              resolve(snapshot.val())},
+            (error) => {reject(error)}
+        );
+  })
+}
+
+export async function getAllProducts(){
+  let vegetables=await getVegetables();
+  let fruit=await getFruits();
+  let nuts =await getNuts();
+  let berries=await getBerries();
+
+  return {...vegetables,...fruit,...nuts,...berries}
+}
+
+export function getBlog(){
+  return new Promise((resolve, reject) => {
+        onValue(
+            ref(database, "blog"), 
             (snapshot) => {
               resolve(snapshot.val())},
             (error) => {reject(error)}

@@ -11,12 +11,16 @@ export default {
     console.log(process.env);
 
     this.$store.dispatch("products/getProducts");
+    this.$store.dispatch("blog/getBlogs");
   },
 
   name: "App",
 
   components: {
   },
+  methods:{
+   
+  }
 
 };
 </script>
