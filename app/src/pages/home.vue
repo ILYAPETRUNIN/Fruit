@@ -9,14 +9,7 @@
             <Favorite  v-for='item in favoriteProducts' :key='item.name' :item='item'/>
         </div>
 
-        <div class='listProduct'>
-            <div class='listProduct__filter d-flex justify-space-between mb-10 mt'>
-                <FilterBtn @filter='filterDate' text='Посление продукты'/>
-                <FilterBtn text='Популярные продукты'/>
-                <FilterBtn text='Обзор продуктов'/>
-            </div>
-            <ListProduct :productsList='getFiltered'/>
-        </div>
+        <SectionProducts/>
 
         <div class='featuredProduct'>
               <AppHeader text='Рекомендуемые товары'/>
@@ -53,9 +46,8 @@ const favoriteProducts=[
 
 import Card from '@/components/home/card.vue'
 import Favorite from '@/components/home/favorite.vue'
-import ListProduct from '@/components/home/listProducts.vue'
-import FilterBtn from '@/components/home/filterBtn.vue'
 import BlogCard from '@/components/blog/blogCard.vue'
+import SectionProducts from '@/components/home/section/sectionProducts.vue'
 import { mapGetters } from "vuex";
 
 
@@ -76,15 +68,11 @@ export default {
   components:{
       Card,
       Favorite,
-      ListProduct,
-      FilterBtn,
-      BlogCard
+      BlogCard,
+      SectionProducts
   },
 
   computed:{
-    getFiltered(){
-        return this.filterData
-    },
 
     getFeatured(){
       if(this.getProductsList)return Array.from(this.getProductsList).slice(8,this.showFeatured+7);
@@ -98,27 +86,6 @@ export default {
     
   },
 
-  watch: {
-    // эта функция запускается при любом изменении вопроса
-    getProductsList: function (val) {
-      this.filterData=val
-    }
-  },
-
-  methods:{
-      filterDate(dir){
-          if(dir=="right"){
-              this.filterData=this.getProducts.sort((a,b)=>{
-                  let Date1=new Date(a[1].date);
-                  let Date2=new Date(b[1].date);
-                  
-                  if(Date1>Date2) return 1;
-                  else if(Date1<Date2) return -1;
-                  return 0;
-              })
-          }
-      }
-  }
 };
 </script>
 
