@@ -4,7 +4,8 @@ export default function () {
         vegetables:[],
         fruits:[],
         nuts:[],
-        berries:[]
+        berries:[],
+        favoritesProducts:[]
     }
 }
 

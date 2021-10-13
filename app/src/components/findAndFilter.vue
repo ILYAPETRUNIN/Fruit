@@ -9,8 +9,8 @@
                     </v-btn>
                 </template>
 
-                <div class='third findAndFilter__menu d-flex flex-column ma-0 pa-0 pa-2 '>
-                    <v-checkbox v-for='item in filterList' :key='item.name' :value='item.name' v-model="checkbox" :label="item.label"/>
+                <div class='third findAndFilter__menu d-flex flex-column pa-3 pt-6'>
+                    <v-checkbox class='ma-0 pa-0' v-for='item in filterList' :key='item.name' :value='item.name' v-model="checkbox" :label="item.label"/>
                 </div>
             </v-menu>
 

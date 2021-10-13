@@ -37,5 +37,9 @@ export async function getBerries ({ commit }) {
       commit('setBerries', result);
 }
 
+export function pushInFavorites({commit},product){
+      commit('setFavorites', product);
+}
+
 
 

@@ -11,7 +11,7 @@
 export default {
     props:{
         icon:{type:String},
-        content:{type:String}
+        content:{type:Number}
     }
 
 }

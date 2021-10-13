@@ -18,3 +18,7 @@ export function setProducts (state, data) {
  export function setBerries (state, data) {
     state.berries=new Map(Object.entries(data)) 
  }
+
+ export function setFavorites(state,data){
+   state.favoritesProducts.push(data)
+ }
