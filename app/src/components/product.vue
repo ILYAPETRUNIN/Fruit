@@ -1,6 +1,6 @@
 <template>
     <div v-ripple class='d-flex align-center product'>
-        <v-img class='product__img' max-height="110" max-width="110" :src='item.url'></v-img>
+        <v-img contain class='product__img' height='110px' width='110px' max-height="110px" max-width="110px" :src='item.url'></v-img>
         <div class='product__info'>
             <h4 class='font-weight-regular'>{{item.name}}</h4>
             <p class='font-weight-bold'>{{item.price+" ₽"}}</p>
@@ -29,6 +29,7 @@ export default {
 
 <style lang="scss" scoped>
     .product{
+        width: 377px;
         cursor:pointer;
         border:2px solid rgba(255, 255, 255, 0);
         transition:all 0.3s;

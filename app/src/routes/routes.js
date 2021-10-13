@@ -30,4 +30,28 @@ export const routes = [
       },
     ],
   },
+  
+  {
+    path: "/products",
+    name: "Products",
+    component: () => import("@/layout/mainLayout.vue"),
+    children: [
+        {
+          path: "/vegetables",
+          component: () => import("@/pages/prodList.vue"),
+          name: "vegetables",
+        },
+        {
+          path: "/fruits",
+          component: () => import("@/pages/prodList.vue"),
+          name: "fruits",
+        },
+        {
+          path: "/berries",
+          component: () => import("@/pages/prodList.vue"),
+          name: "berries",
+        },
+
+    ]
+  } 
 ];

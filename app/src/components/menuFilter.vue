@@ -1,20 +1,24 @@
 <template>
   <div class='menuFilter d-flex flex-column menuFilter'>
-      <v-btn class='btn' color="primary">
-        <v-icon class='btn__icon' left>mdi-menu</v-icon>
-            <p class='btn__text ma-0'>Все разделы</p>
-        <v-icon right>mdi-chevron-down</v-icon>
+      <v-btn @click='showSection=!showSection' class='btn' color="primary">
+          <v-icon class='btn__icon' left>mdi-menu</v-icon>
+              <p class='btn__text ma-0'>Все разделы</p>
+          <v-icon :class='{rotate180deg:showSection}' right>mdi-chevron-down</v-icon>
       </v-btn>
  
-      <v-card class='menuFilter__list' outlined>
-        <v-list class='mt-5 ml-2' dense>
-            <v-list-item-group v-model="selectedItem" color="primary">
-              <v-list-item v-for="(item, i) in filterList" :key="i">
-                  <div class='menuFilter__text'>{{item.label}}</div>
-              </v-list-item>
-            </v-list-item-group>
-        </v-list>
-      </v-card>
+      <v-expand-transition>
+          <v-card v-if='showSection'  class='menuFilter__list' outlined>
+            <v-list class='ml-2' dense>
+                <v-list-item-group v-model="selectedItem" color="primary">
+                  <router-link class='text-decoration-none' :to='{name:item.name}' v-for="(item, i) in filterList" :key="i">
+                      <v-list-item>
+                          <div class='menuFilter__text'>{{item.label}}</div>
+                      </v-list-item>
+                  </router-link>
+                </v-list-item-group>
+            </v-list>
+          </v-card>
+      </v-expand-transition>
       
       
   </div>
@@ -25,7 +29,8 @@ import { mapGetters } from 'vuex';
 export default {
     data(){
       return{
-        selectedItem:null
+        selectedItem:null,
+        showSection:false
       }
     },
       computed:{
@@ -33,6 +38,16 @@ export default {
     }
 }
 </script>
+
+<style>
+  .fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+}
+
+</style>
 
 <style lang="scss" scoped>
   .menuFilter{
@@ -54,7 +69,8 @@ export default {
       }
       &__list{
         margin-top:20px;
-        height:441px;
+        
+        max-height:441px;
       }
   }
 </style>

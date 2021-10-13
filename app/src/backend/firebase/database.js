@@ -45,9 +45,19 @@ export  function pushBlog(name, url,date,countComments,text) {
     });
 }
 
+export  function pushSection(id,name,label) {
+  const sectionListRef = ref(database, "section");
+  const newdata =push(sectionListRef);
+  return  set(newdata, {
+    id,
+    name,
+    label,
+  });
+}
 
 
-export function getVegetables(){
+
+export function getFiribaseVegetables(){
   return new Promise((resolve, reject) => {
         onValue(
             ref(database, "products/vegetables"), 
@@ -58,7 +68,7 @@ export function getVegetables(){
   })
 }
 
-export function getFruits(){
+export function getFiribaseFruits(){
   return new Promise((resolve, reject) => {
         onValue(
             ref(database, "products/fruits"), 
@@ -69,7 +79,7 @@ export function getFruits(){
   })
 }
 
-export function getNuts(){
+export function getFiribaseNuts(){
   return new Promise((resolve, reject) => {
         onValue(
             ref(database, "products/nuts"), 
@@ -80,7 +90,7 @@ export function getNuts(){
   })
 }
 
-export function getBerries(){
+export function getFiribaseBerries(){
   return new Promise((resolve, reject) => {
         onValue(
             ref(database, "products/berries"), 
@@ -92,10 +102,10 @@ export function getBerries(){
 }
 
 export async function getAllProducts(){
-  let vegetables=await getVegetables();
-  let fruit=await getFruits();
-  let nuts =await getNuts();
-  let berries=await getBerries();
+  let vegetables=await getFiribaseVegetables();
+  let fruit=await getFiribaseFruits();
+  let nuts =await getFiribaseNuts();
+  let berries=await getFiribaseBerries();
 
   return {...vegetables,...fruit,...nuts,...berries}
 }
@@ -109,6 +119,17 @@ export function getBlog(){
             (error) => {reject(error)}
         );
   })
+}
+
+export function getFirebaseSection(){
+  return new Promise((resolve, reject) => {
+    onValue(
+        ref(database, "section"), 
+        (snapshot) => {
+          resolve(snapshot.val())},
+        (error) => {reject(error)}
+    );
+})
 }
 
 

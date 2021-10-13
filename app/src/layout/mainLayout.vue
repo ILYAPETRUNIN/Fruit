@@ -12,13 +12,13 @@
         <NavigationShop class='container-desctop'/>
       </div>
 
-      <v-main class='d-flex align-center justify-center'>
+      <div class='d-flex align-center justify-center'>
             <router-view class='container-desctop'/>
-      </v-main>
+      </div>
 
-      <v-footer absolute class='d-flex secondary align-center justify-center' app>
+      <div absolute class='d-flex secondary align-center justify-center' app>
           <Footer class='footer container-desctop'/>
-      </v-footer>
+      </div>
 
   </div>
 </template>

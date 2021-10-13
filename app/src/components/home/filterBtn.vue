@@ -28,11 +28,6 @@ export default {
 
 }
 </script>
-<style>
-    .rotate180deg{
-        transform:rotateX(180deg);
-    }
-</style>
 
 <style lang="scss" scoped>
     .filterBtn{

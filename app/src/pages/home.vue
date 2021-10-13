@@ -11,13 +11,7 @@
 
         <SectionProducts/>
 
-        <div class='featuredProduct'>
-              <AppHeader text='Рекомендуемые товары'/>
-
-              <div class='featuredProduct__list d-flex home__filter flex-wrap'>
-                  <Card class='featuredProduct__list_item' v-for='item in getFeatured' :key='item[0]' :filterItem='item[1]'/>
-              </div>
-        </div>
+        <SectionFavorite/>
 
         <div class='blog'>
               <AppHeader text='Интересные статьи'/>
@@ -48,6 +42,7 @@ import Card from '@/components/home/card.vue'
 import Favorite from '@/components/home/favorite.vue'
 import BlogCard from '@/components/blog/blogCard.vue'
 import SectionProducts from '@/components/home/section/sectionProducts.vue'
+import SectionFavorite from '@/components/home/section/sectionFavorite.vue'
 import { mapGetters } from "vuex";
 
 
@@ -58,8 +53,6 @@ export default {
     return{
         palletFilter,
         favoriteProducts,
-        showProducts:9,
-        showFeatured:8,
         filterData:[]
     }
   },
@@ -69,16 +62,11 @@ export default {
       Card,
       Favorite,
       BlogCard,
-      SectionProducts
+      SectionProducts,
+      SectionFavorite
   },
 
   computed:{
-
-    getFeatured(){
-      if(this.getProductsList)return Array.from(this.getProductsList).slice(8,this.showFeatured+7);
-      else return []    
-    },
-
     ...mapGetters("products", ["getProductsList"]),
     ...mapGetters("blog", ["getBlogs"]),
     
@@ -108,16 +96,5 @@ export default {
   }
   .listProduct{
     margin-top:72px;
-  }
-  .featuredProduct{
-    &__list{
-
-      &_item{
-        margin-bottom:20px;
-        &:not(:nth-child(4n+4)){
-          margin-right:20px;
-        }
-      }
-    }
   }
 </style>

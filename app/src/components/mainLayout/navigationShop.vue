@@ -59,7 +59,7 @@ export default {
             background:#F5F5F5!important;
             margin-top:20px;
             width:100%;
-            height:100%;
+            height:441px;
             &__img{
                 max-width:400px; 
             }

@@ -2,6 +2,7 @@
     <div class='listProduct'>
             <div class='listProduct__filter d-flex justify-space-between mb-10 mt'>
                 <FilterBtn @filter='filterDate' text='Посление продукты'/>
+                <FilterBtn @filter='filterPopular' text='Популярные продукты'/>
 
             </div>
             <ListProduct :productsList='getFiltered'/>
@@ -43,13 +44,13 @@ export default {
                 let Date2=new Date(b[1].date);
                   
                 if (dir=="right"){
-                    if(Date1>Date2) return 1;
-                    else if(Date1<Date2) return -1;
+                    if(Date1>Date2) return -1;
+                    else if(Date1<Date2) return 1;
                 }
 
                 else if (dir=="left"){
-                    if(Date1>Date2) return -1;
-                    else if(Date1<Date2) return 1;
+                    if(Date1>Date2) return 1;
+                    else if(Date1<Date2) return -1;
                 }
 
                 return 0;
@@ -57,6 +58,27 @@ export default {
 
 
           this.filterData=this.filterData.sort((a,b)=>{ return filtered(a,b,dir)})
+          
+
+      },
+
+      filterPopular(dir){        
+          function filtered(a,b,dir){
+                if (dir=="right"){
+                    if(a>b) return -1;
+                    else if(a<b) return 1;
+                }
+
+                else if (dir=="left"){
+                    if(a>b) return 1;
+                    else if(a<b) return -1;
+                }
+
+                return 0;
+          }
+
+
+          this.filterData=this.filterData.sort((a,b)=>{ return filtered(a[1].orders,b[1].orders,dir)})
           
 
       }
