@@ -3,7 +3,7 @@
         <AppHeader text='Рекомендуемые товары'/>
 
         <div class='featuredProduct__list d-flex home__filter flex-wrap'>
-            <Card class='featuredProduct__list_item' v-for='item in getFeatured' :key='item[0]' :filterItem='item[1]'/>
+            <Card rotate class='featuredProduct__list_item' v-for='item in getFeatured' :key='item[0]' :filterItem='item[1]'/>
         </div>
     </div>
 </template>

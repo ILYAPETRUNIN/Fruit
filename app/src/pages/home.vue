@@ -2,7 +2,7 @@
     <div class='home'>
 
         <div class='d-flex justify-space-between home__filter flex-wrap'>
-              <Card v-for='item in palletFilter' :key='item.name' :filterItem='item'/>
+              <Card hoverable v-for='item in palletFilter' :key='item.name' :filterItem='item'/>
         </div>
 
         <div class='d-flex justify-space-between home__favorite'>
