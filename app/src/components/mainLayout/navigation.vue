@@ -3,7 +3,7 @@
     <div class='navigation d-flex justify-space-between align-center'>
         <v-col class='pa-0' cols='3'><Logo/></v-col>
         <v-col class='pa-0' cols='7'><Menu  :links='pages'/></v-col>
-        <v-col class='pa-0' cols='3'><ShopBtns /></v-col>
+        <v-col class='pa-0' cols='3'><ShopBtns/></v-col>
     </div>
 </div>
 </template>

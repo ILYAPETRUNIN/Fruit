@@ -5,7 +5,8 @@ export default function () {
         fruits:[],
         nuts:[],
         berries:[],
-        favoritesProducts:[]
+        favoritesProducts:[],
+        basket:[]
     }
 }
 

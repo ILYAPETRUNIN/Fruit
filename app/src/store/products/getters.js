@@ -21,6 +21,10 @@ export function getBerries(state) {
 export function getFavoriteProducts(state){
     return state.favoritesProducts
 }
+
+export function getBasket(state){
+    return state.basket
+}
   
 
 

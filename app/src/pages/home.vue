@@ -24,10 +24,10 @@
 
 <script>
 const palletFilter=[
-  {id:0,value:'freshFruit',name:'Свежие фрукты',url:require('@/assets/img/filter/freshfruit.png')},
-  {id:1,value:'driedFruit',name:'Сухофрукты, орехи',url:require('@/assets/img/filter/driedfruit.png')},
+  {id:0,value:'fruits',name:'Свежие фрукты',url:require('@/assets/img/filter/freshfruit.png')},
+  {id:1,value:'nuts',name:'Сухофрукты, орехи',url:require('@/assets/img/filter/driedfruit.png')},
   {id:2,value:'vegetables',name:'Овощи',url:require('@/assets/img/filter/vegetables.png')},
-  {id:3,value:'drinkFruit',name:'Напитки',url:require('@/assets/img/filter/drinkfruits.png')},
+  {id:3,value:'drinks',name:'Напитки',url:require('@/assets/img/filter/drinkfruits.png')},
 ]
 
 const favoriteProducts=[

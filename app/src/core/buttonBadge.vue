@@ -1,5 +1,5 @@
 <template>
-        <v-btn icon >
+        <v-btn v-on='on' v-bind='attrs' icon >
           <div class='d-flex'>
             <v-icon>{{icon}}</v-icon>
             <v-badge class='badge' overlap bordered  :content="content"/>
@@ -11,7 +11,10 @@
 export default {
     props:{
         icon:{type:String},
-        content:{type:Number}
+        content:{type:Number},
+        on:{default:null},
+        attrs:{default:null}
+
     }
 
 }

@@ -1,5 +1,5 @@
 <template>
-    <div v-ripple class='d-flex flex-column justify-center align-center palletFilter'>
+    <router-link  :to={name:filterItem.value} v-ripple class='d-flex flex-column justify-center align-center palletFilter text-decoration-none'>
         <v-img cover class='palletFilter__img' max-height="176" max-width="240" :src='filterItem.url'/>
         <div class='d-flex flex-column align-center'>
             <div v-if='!filterItem.price' class='d-flex justify-center align-center palletFilter__text'>{{filterItem.name}}</div>
@@ -9,7 +9,7 @@
                 <p class='ma-0'>{{filterItem.price+" ₽"}}</p>
             </div>
         </div>
-    </div>
+    </router-link>
 </template>
 
 <script>
@@ -18,6 +18,9 @@ export default {
         filterItem:{
             type:Object
         }
+    },
+    methods:{
+
     }
 }
 </script>

@@ -41,5 +41,12 @@ export function pushInFavorites({commit},product){
       commit('setFavorites', product);
 }
 
+export function pushInBasket({commit},product){
+      commit('setBasket', product);
+}
+export function popInBasket({commit},idProduct){
+      commit('popBasket', idProduct);
+}
+
 
 

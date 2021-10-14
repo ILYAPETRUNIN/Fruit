@@ -22,3 +22,11 @@ export function setProducts (state, data) {
  export function setFavorites(state,data){
    state.favoritesProducts.push(data)
  }
+
+ export function setBasket(state,data){
+   state.basket.push(data)
+ }
+
+ export function popBasket(state,idProduct){
+   state.basket=state.basket.filter((item)=>{return item[0]!=idProduct})
+ }
