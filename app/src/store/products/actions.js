@@ -42,10 +42,22 @@ export function pushInFavorites({commit},product){
 }
 
 export function pushInBasket({commit},product){
-      commit('setBasket', product);
+      commit('setBasket', {
+            id:product[0],
+            count:1
+      });
 }
+
 export function popInBasket({commit},idProduct){
       commit('popBasket', idProduct);
+}
+
+export function incCountBasket({commit},idProduct){
+      commit('incCountBasket', idProduct);
+}
+
+export function decCountBasket({commit},idProduct){
+      commit('decCountBasket', idProduct);
 }
 
 

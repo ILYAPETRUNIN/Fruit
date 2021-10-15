@@ -6,25 +6,36 @@
                  <ButtonBadge :on="on" :attrs="attrs" icon='mdi-shopping-outline' :content='getBasket.length'/>
              </template>
 
-            <div class='d-flex flex-column align-start pa-5 basket third'>
-                <h4 class='ma-0 mr-3 '>
-                    КОРЗИНА
-                    <v-icon class='primary--text'>mdi-cart-arrow-right</v-icon>
-                </h4>
-                <div class='d-flex align-center' v-for='product in getBasket' :key='product[0]'>
-                    <div class='d-flex  align-center basket__imgName'>
-                        <v-img contain  height='50px' width='50px' :src='product[1].url'></v-img>
-                        <p class='ma-0 ml-3 basket__nameProduct'>{{product[1].name}}</p>
+            <div class='d-flex flex-column align-center pa-5 basket third'>
+                <h2 class='ma-0 mb-5 '>КОРЗИНА</h2>
+
+                <div class='d-flex flex-column' v-if='getBasket.length!=0'>
+                    <div class='d-flex align-center justify-space-between' v-for='product in getBasket' :key='product.id'>
+                        <div class='d-flex  align-center basket__imgName'>
+                            <v-img contain max-height='50px' max-width='50px'  height='50px' width='50px' :src='product.description.url'></v-img>
+                            <p class='ma-0 ml-3 basket__nameProduct'>{{product.description.name}}</p>
+                        </div>
+
+                        <div class='d-flex justify-space-between align-center ml-4 basket__count'>
+                            <v-btn @click='decCountBasket(product.id)' icon><v-icon class='primary--text'>mdi-arrow-left-drop-circle</v-icon></v-btn>
+                            <p class='ma-0 ml-0 mr-0'>{{product.count}}</p>
+                            <v-btn @click='incCountBasket(product.id)' icon><v-icon class='primary--text'>mdi-arrow-right-drop-circle</v-icon></v-btn>
+                        </div>
+
+                        <p class='ma-0 ml-7 mr-1'>{{product.description.price*product.count}} ₽</p>
+                        <v-btn @click='popProduct(product.id)' icon><v-icon class='error--text'>mdi-close-circle</v-icon></v-btn>
                     </div>
 
-                    <div class='d-flex align-center ml-4'>
-                        <v-btn icon><v-icon class='primary--text'>mdi-arrow-left-drop-circle</v-icon></v-btn>
-                        <p class='ma-0 ml-1 mr-1'>0</p>
-                        <v-btn icon><v-icon class='primary--text'>mdi-arrow-right-drop-circle</v-icon></v-btn>
-                    </div>
-                    <p class='ma-0 ml-1 mr-1'>{{product[1].price}} ₽</p>
-                    <v-btn @click='popProduct(product[0])' icon><v-icon class='error--text'>mdi-close-circle</v-icon></v-btn>
-                </div>  
+                    <v-btn class='d-flex primary mt-3'>
+                        <p class='btn__text ma-0'>Оформить</p>
+                        <v-icon right>mdi-cart-arrow-right</v-icon>
+                    </v-btn>
+                </div>
+                
+                 <p v-else class='align-self-center mt-5 error--text'>Пусто</p>
+
+                 
+                  
              </div>  
       </v-menu>
       
@@ -56,7 +67,7 @@ export default {
             let sum=0;
             if(this.getBasket){
                 this.getBasket.forEach(element => {
-                    sum+=Number(element[1].price)
+                    sum+=Number(element.description.price*element.count)
                 });
             }
 
@@ -66,7 +77,14 @@ export default {
     methods:{
             popProduct(idProduct){
                 this.$store.dispatch("products/popInBasket",idProduct);
+            },
+            incCountBasket(idProduct){
+                this.$store.dispatch("products/incCountBasket",idProduct);
+            },
+            decCountBasket(idProduct){
+                this.$store.dispatch("products/decCountBasket",idProduct);
             }
+            
     }
 }
 </script>
@@ -99,6 +117,9 @@ export default {
         }
         &__imgName{
             width:150px;
+        }
+        &__count{
+            width:80px;
         }
     }
 </style>

@@ -24,9 +24,25 @@ export function setProducts (state, data) {
  }
 
  export function setBasket(state,data){
-   state.basket.push(data)
+   if(!state.basket.some((item)=>{return item.id==data.id})) state.basket.push(data)
  }
 
  export function popBasket(state,idProduct){
-   state.basket=state.basket.filter((item)=>{return item[0]!=idProduct})
+   state.basket=state.basket.filter((item)=>{return item.id!=idProduct})
+ }
+
+ export function incCountBasket(state,idProduct){
+   state.basket.find((item)=>{
+      return item.id==idProduct
+   }).count++
+
+ }
+
+ export function decCountBasket(state,idProduct){
+   let find=state.basket.find((item)=>{
+      return item.id==idProduct
+   })
+
+   if(find.count==1)popBasket(state,idProduct)
+   else find.count--
  }

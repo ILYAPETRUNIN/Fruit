@@ -23,8 +23,17 @@ export function getFavoriteProducts(state){
 }
 
 export function getBasket(state){
-    return state.basket
+    let result=[]
+    state.basket.forEach((item)=>{
+        result.push({
+            id:item.id,
+            description:getProductsList(state).get(item.id),
+            count:item.count
+        })
+    });
+    return result
 }
+
   
 
 
