@@ -10,7 +10,7 @@
             <Contacts class='header__contacts' :items='contacts'/>
             <SelectLang/>
             <div class='header__separator'/>
-            <Link text='Login' icon='mdi-account-outline' color='third'/>
+            <Link @select='auth' text='Войти' icon='mdi-account-outline' color='third'/>
         </div>
     </div>
 </template>
@@ -29,6 +29,12 @@ export default {
     },
     computed:{
         ...mapGetters("main", ["contacts"])
+    },
+
+    methods:{
+        auth(){
+            this.$emit('auth')
+        }
     }
 
 }

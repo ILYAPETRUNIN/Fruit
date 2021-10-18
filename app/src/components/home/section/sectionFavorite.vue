@@ -3,7 +3,7 @@
         <AppHeader text='Рекомендуемые товары'/>
 
         <div class='featuredProduct__list d-flex home__filter flex-wrap'>
-            <Card rotate class='featuredProduct__list_item' v-for='item in getFeatured' :key='item[0]' :filterItem='item[1]'/>
+            <Card @select='pushInBasket(item)' rotate class='featuredProduct__list_item' v-for='item in getFeatured' :key='item[0]' :filterItem='item[1]'/>
         </div>
     </div>
 </template>
@@ -30,10 +30,16 @@ export default {
       else return []    
     },
 
-    ...mapGetters("products", ["getProductsList"]),
-    
-    
+    ...mapGetters("products", ["getProductsList"]),   
   },
+      methods:{
+        pushInFavorites(products){
+            this.$store.dispatch("products/pushInFavorites",products);
+        },
+        pushInBasket(products){
+            this.$store.dispatch("products/pushInBasket",products);
+        }
+    }
 }
 </script>
 

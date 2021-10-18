@@ -9,7 +9,7 @@
                     <div class='navigationShop__findAndFilter pa-0'><FindAndFilter/></div>
 
                     <div class='d-flex  align-start'>
-                        <v-btn class='navigationShop__call mr-5' icon><v-icon>mdi-phone-in-talk-outline</v-icon></v-btn>
+                        <v-btn @click='showCallDialog' class='navigationShop__call mr-5' icon><v-icon>mdi-phone-in-talk-outline</v-icon></v-btn>
                         <div class='d-flex flex-column '>
                             <a class='navigationShop__number' href="#">8 (800)-777-35-35</a>
                             <p class='navigationShop__operMode ma-0'>Режим работы: 24/7</p>
@@ -42,6 +42,11 @@ export default {
     components:{
         MenuFilter,
         FindAndFilter
+    },
+    methods:{
+        showCallDialog(){
+            this.$emit('showCallDialog')
+        }
     }
 
 }

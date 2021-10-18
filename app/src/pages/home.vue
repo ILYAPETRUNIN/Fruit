@@ -2,7 +2,7 @@
     <div class='home'>
 
         <div class='d-flex justify-space-between home__filter flex-wrap'>
-              <Card hoverable v-for='item in palletFilter' :key='item.name' :filterItem='item'/>
+              <Card @select='link(item.value)' hoverable v-for='item in palletFilter' :key='item.name' :filterItem='item'/>
         </div>
 
         <div class='d-flex justify-space-between home__favorite'>
@@ -68,11 +68,13 @@ export default {
 
   computed:{
     ...mapGetters("products", ["getProductsList"]),
-    ...mapGetters("blog", ["getBlogs"]),
-    
-    
-    
+    ...mapGetters("blog", ["getBlogs"]),   
   },
+  methods:{
+    link(name){
+      this.$router.push({ name})
+    }
+  }
 
 };
 </script>

@@ -1,7 +1,6 @@
 import Vue from "vue";
-import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+import VueTheMask from 'vue-the-mask'
 
 export default function usePlugins() {
-  Vue.use(BootstrapVue);
-  Vue.use(IconsPlugin);
+  Vue.use(VueTheMask)
 }

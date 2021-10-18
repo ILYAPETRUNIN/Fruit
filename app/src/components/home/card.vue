@@ -1,5 +1,5 @@
 <template>
-    <div :class='{hoverable:hoverable}' v-ripple class='center card d-flex flex-column justify-center align-center palletFilter text-decoration-none'>
+    <div @click='select' :class='{hoverable:hoverable}' v-ripple class='center card d-flex flex-column justify-center align-center palletFilter text-decoration-none'>
         <div :class='{front:rotate}' class='d-flex flex-column justify-center align-center'>
             <v-img contain class='palletFilter__img' max-height="176" max-width="240" :src='filterItem.url'/>
             <div class='d-flex flex-column align-center'>
@@ -52,7 +52,9 @@ export default {
         }
     },
     methods:{
-
+        select(){
+            this.$emit('select')
+        }
     }
 }
 </script>

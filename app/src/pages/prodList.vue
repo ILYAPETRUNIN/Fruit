@@ -1,6 +1,6 @@
 <template>
     <div class='pageProducts d-flex flex-wrap' >
-        <Product class='justify-center justify-sm-start col-md-4 col-sm-6 col-xs-12 pa-0' v-for='product in getMapProducts' :key='product[1].id' :item='product[1]'/>
+        <Product @clickProduct='pushInBasket(product)' @clickLikes='pushInFavorites(product)' class='justify-center justify-sm-start col-md-4 col-sm-6 col-xs-12 pa-0' v-for='product in getMapProducts' :key='product[1].id' :item='product[1]'/>
     </div>
 </template>
 
@@ -34,6 +34,14 @@ export default {
             return result
         }
     },
+    methods:{
+        pushInFavorites(products){
+            this.$store.dispatch("products/pushInFavorites",products);
+        },
+        pushInBasket(products){
+            this.$store.dispatch("products/pushInBasket",products);
+        }
+    }
 }
 </script>
 
