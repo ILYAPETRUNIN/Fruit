@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div @click='clickProduct' @mouseover='isShowButton=true' @mouseleave='isShowButton=false' v-ripple class='d-flex align-center product'>
+        <div v-if='!loading' @click='clickProduct' @mouseover='isShowButton=true' @mouseleave='isShowButton=false' v-ripple class='d-flex align-center product'>
             <v-img contain class='product__img' height='110px' width='110px' max-height="110px" max-width="110px" :src='item.url'></v-img>
             <div class='product__info'>
                 <h4 class='font-weight-regular'>{{item.name}}</h4>
@@ -34,6 +34,14 @@
                 </div>
             </v-slide-x-reverse-transition>
         </div>
+
+        <div v-else class='d-flex align-center product'>
+                    <v-skeleton-loader height='110px' width='110px'  type="image"/>
+                    <div class='d-flex  flex-column product__info'>
+                        <v-skeleton-loader width='100px'  type="text"/>
+                        <v-skeleton-loader width='50px' type="text"/>
+                    </div>            
+        </div>
     </div>
 </template>
 
@@ -53,7 +61,8 @@ export default {
     },
 
     props:{
-        item:{type:Object}
+        item:{type:Object},
+        loading:{type:Boolean,default:false}
     },
     methods:{
         clickLikes(){
@@ -62,8 +71,7 @@ export default {
         clickProduct(){
             this.$emit('clickProduct') 
         }
-    }
-   
+    },   
 }
 </script>
 
