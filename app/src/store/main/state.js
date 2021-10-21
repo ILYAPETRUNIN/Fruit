@@ -95,7 +95,12 @@ export default function (){
             name:'ОТЗЫВЫ',
             url:''
           },
-        ]
+        ],
+
+        notification:{
+            message:null,
+            color:null
+        }
   }
 }
 

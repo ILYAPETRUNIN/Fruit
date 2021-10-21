@@ -1,9 +1,9 @@
 import {loginFirebaseEmailAndPassword,logOutFirebase,createUserFirebase,getUidFirebase} from '@/backend/firebase/auth.js'
 
-export async function loginEmailAndPassword ({ commit },{email,password}) {
+export async function loginEmailAndPassword ({dispatch},{email,password}) {
       try{
-            let result=await loginFirebaseEmailAndPassword(email,password)
-            commit('setProfile',result)
+            await loginFirebaseEmailAndPassword(email,password)
+            dispatch('getUid')
       }
       catch(e){
             if(e.message.includes('auth/wrong-password'))         throw new Error('Не верный пароль')
@@ -12,13 +12,9 @@ export async function loginEmailAndPassword ({ commit },{email,password}) {
       }
 }
 
-export async function logOut(){
-      await logOutFirebase()
-}
-
-export async function register({dispatch},{email,password}){
+export async function logOut({dispatch}){
       try{
-            await createUserFirebase(email,password)
+            await logOutFirebase()
             dispatch('getUid')
       }
       catch(e){
@@ -27,8 +23,21 @@ export async function register({dispatch},{email,password}){
       }
 }
 
-export function getUid(){
-      const user= getUidFirebase()
-      return user ? user.uid :null
-  }
+export async function register({dispatch},{email,password}){
+      try{
+            await createUserFirebase(email,password)
+            dispatch('getUid')
+      }
+      catch(e){
+            if(e.message.includes('auth/email-already-in-use')) throw new Error('Пользователь с данным адресом уже существует')
+            throw e
+      }
+}
+
+export function getUid({ commit }){
+      let user= getUidFirebase()
+      user=user ? user.uid :null
+      commit('setUserUid',user)
+      return user
+}
 

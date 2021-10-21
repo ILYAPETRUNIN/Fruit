@@ -1,20 +1,15 @@
 import {firebaseApp} from './index.js'
 
-import { getAuth,signInWithEmailAndPassword,signOut,createUserWithEmailAndPassword,RecaptchaVerifier} from "firebase/auth";
+import { getAuth,signInWithEmailAndPassword,signOut,createUserWithEmailAndPassword} from "firebase/auth";
 
 
 export let auth = getAuth(firebaseApp);
-
-export function createRecapchaVerifier(id){
-    console.log(id)
-    window.recaptchaVerifier = new RecaptchaVerifier(id, {}, auth);
-}
 
 export function loginFirebaseEmailAndPassword(email,password){
     return signInWithEmailAndPassword(auth, email, password)
 }
 
-export function logOutFirebase(auth){
+export function logOutFirebase(){
     return signOut(auth)
 }
 

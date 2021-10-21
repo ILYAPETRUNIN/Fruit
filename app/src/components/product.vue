@@ -10,7 +10,7 @@
             <v-slide-x-reverse-transition>
                 <div v-if='isShowButton' class='pt-2 pb-2 d-flex flex-column align-center justify-space-between product__buttons third'>
                     
-                    <v-tooltip class='third' bottom>
+                    <v-tooltip color='secondary' class='third' bottom>
                             <template v-slot:activator="{ on, attrs }">
                                 <v-btn v-bind="attrs"  v-on="on" @click.stop='clickLikes' class='red--text' icon>
                                     <v-icon large>mdi-heart-circle</v-icon> 
@@ -19,7 +19,7 @@
                             <span>Добавить в избранное</span>
                     </v-tooltip>
 
-                    <v-tooltip bottom>
+                    <v-tooltip color='secondary' bottom>
                             <template v-slot:activator="{ on, attrs }">
                                 <v-btn v-on='on' v-bind='attrs' @click='dialog=true' class='gray--text' icon>
                                     <v-icon large>mdi-post</v-icon> 

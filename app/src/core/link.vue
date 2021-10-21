@@ -1,5 +1,5 @@
 <template>
-    <div @click='select' class='d-flex link align-center'>
+    <div v-on='on' v-bind='attrs' @click='select' class='d-flex link align-center'>
         <v-icon class='link__icon' :color='color' v-if='icon'>{{icon}}</v-icon>
         <p :class='`${color}--text`' class='link__text ma-0'>{{text}}</p>
     </div>
@@ -15,7 +15,9 @@ export default {
             type:String
         },
         color:{type:String},
-        dark:{type:Boolean,default:false}
+        dark:{type:Boolean,default:false},
+                on:{default:null},
+        attrs:{default:null}
     },
     methods:{
         select(){

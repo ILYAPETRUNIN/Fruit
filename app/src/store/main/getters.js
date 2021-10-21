@@ -14,3 +14,7 @@ export function footerLinks(state) {
 export function footerLinks1(state) {
   return state.footerLinks1;
 }
+
+export function getNotification(state) {
+  return state.notification;
+}

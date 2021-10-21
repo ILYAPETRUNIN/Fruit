@@ -34,7 +34,7 @@ import Navigation from '@/components/mainLayout/navigation.vue'
 import NavigationShop from '@/components/mainLayout/navigationShop.vue'
 import CallBtn from '@/components/callBtn.vue'
 import CallDialog from '@/components/callDialog.vue'
-import AuthDialog from '@/components/authDialog.vue'
+import AuthDialog from '@/components/mainLayout/auth/authDialog.vue'
 
 export default {
   data(){

@@ -10,7 +10,14 @@
             <Contacts class='header__contacts' :items='contacts'/>
             <SelectLang/>
             <div class='header__separator'/>
-            <Link @select='auth' text='Войти' icon='mdi-account-outline' color='third'/>
+
+            <Link v-if='getUid==null' @select='auth' text="Войти" icon='mdi-account-outline' color='third'/>
+            <v-menu v-else :close-on-content-click='false' offset-y open-on-hover>
+                <template v-slot:activator="{ on, attrs }">
+                    <Link :on="on" :attrs="attrs" text="Профиль" icon='mdi-account-outline' color='third'/>
+                </template>
+                <ProfileMenu/>
+            </v-menu>
         </div>
     </div>
 </template>
@@ -19,21 +26,28 @@
 import Link from '@/core/link.vue'
 import Contacts from '../contacts.vue'
 import SelectLang from '../selectLang.vue'
+import ProfileMenu from './auth/profileMenu.vue'
 import { mapGetters } from 'vuex';
 
 export default {
     components:{
         Link,
         Contacts,
-        SelectLang
+        SelectLang,
+        ProfileMenu
     },
+
     computed:{
-        ...mapGetters("main", ["contacts"])
+        ...mapGetters("main", ["contacts"]),
+        ...mapGetters("auth", ["getUid"])
     },
 
     methods:{
         auth(){
             this.$emit('auth')
+        },
+        logout(){
+            this.$store.dispatch("auth/logOut");
         }
     }
 
