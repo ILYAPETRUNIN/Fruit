@@ -32,7 +32,7 @@ export default {
         position: fixed;
         right: 5%;
         bottom: 10%;
-        z-index:999;
+        z-index:99;
         transition:.3s;
         -webkit-animation:hoverWave linear 1s infinite;
         animation:hoverWave linear 1s infinite;
