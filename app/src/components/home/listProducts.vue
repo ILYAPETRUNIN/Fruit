@@ -40,9 +40,17 @@ export default {
   methods:{
     pushInFavorites(products){
         this.$store.dispatch("products/pushInFavorites",products);
+        this.$store.dispatch("main/setNotification",{
+                    message:`Товар "${products[1].name}" добавлен в избранное`,
+                    color:'accent'
+        })
     },
     pushInBasket(products){
         this.$store.dispatch("products/pushInBasket",products);
+        this.$store.dispatch("main/setNotification",{
+                    message:`Товар "${products[1].name}" добавлен в корзину`,
+                    color:'accent'
+        })
     }
   },
   

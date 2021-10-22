@@ -42,7 +42,7 @@
 
         <div class='d-flex align-center'>
             <v-checkbox v-model="personAgree" label="Я согласен c" color="primary"/>
-            <a class='link pa-0 mb-1 ml-1' href='#' @click.prevent=''>политикой конфиденциальности</a>
+            <a class='link pa-0 mb-1 ml-1' href='#' @click.prevent='showPolicyPrivate'>политикой конфиденциальности</a>
         </div>
 
         <v-btn :disabled='!personAgree' @click="validate" x-large class="d-flex primary mt-3">
@@ -93,6 +93,9 @@ export default {
             if(this.$refs.form.validate()){
                 await this.regEmailAndPassword(this.regData)
             }
+        },
+        showPolicyPrivate(){
+            this.$emit('showPolicyPrivate')
         }
     }
 }

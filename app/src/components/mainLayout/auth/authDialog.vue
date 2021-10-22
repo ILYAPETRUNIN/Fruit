@@ -4,7 +4,7 @@
 
             <div class='dialog third pa-10'>
                     <AuthForm v-if='form.type=="auth"' @successAuth='inputVal=false'/> 
-                    <RegForm  v-else  @successReg='inputVal=false'/>
+                    <RegForm @showPolicyPrivate='showPolicyPrivate'  v-else  @successReg='inputVal=false'/>
 
                     <div class='d-flex align-start flex-column mt-5 linkMode'>
                         <div  v-if='!(form.type=="auth" & form.mode=="password")' @click='showAuthForm("password")' class='primary--text linkMode__item mb-2'>Вход  по email/логину</div>
@@ -71,6 +71,9 @@ export default {
         showRegForm(mode){
             this.form.type ="reg",
             this.form.mode=mode
+        },
+        showPolicyPrivate(){
+            this.$emit('showPolicyPrivate')
         }
     }
 

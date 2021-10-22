@@ -22,7 +22,10 @@
 
       <CallBtn v-if='!isShowCallDialog' @showCallDialog='isShowCallDialog=true'/>
       <CallDialog v-model='isShowCallDialog'/>
-      <AuthDialog v-model='isShowAuthDialog'/>
+      <AuthDialog @showPolicyPrivate='isShowPrivacyPolicyDialog=true' v-model='isShowAuthDialog'/>
+      <PrivacyPolicyDialog v-model='isShowPrivacyPolicyDialog'/>
+
+
 
   </div>
 </template>
@@ -35,12 +38,14 @@ import NavigationShop from '@/components/mainLayout/navigationShop.vue'
 import CallBtn from '@/components/callBtn.vue'
 import CallDialog from '@/components/callDialog.vue'
 import AuthDialog from '@/components/mainLayout/auth/authDialog.vue'
+import PrivacyPolicyDialog from '@/components/privacyPolicyDialog.vue'
 
 export default {
   data(){
     return{
       isShowCallDialog:false,
-      isShowAuthDialog:false
+      isShowAuthDialog:false,
+      isShowPrivacyPolicyDialog:true
     }
   },
   
@@ -51,7 +56,8 @@ export default {
     NavigationShop,
     CallBtn,
     CallDialog,
-    AuthDialog
+    AuthDialog,
+    PrivacyPolicyDialog
   },
 
 };
